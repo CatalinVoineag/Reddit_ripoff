@@ -1,0 +1,26 @@
+<% donotdismiss = "" %>
+<% containerID = "flashContainer" %>
+<% flash.each do |name, msg| %>
+  <% 
+
+    donotdismiss = "no-dismiss" if name.to_s =~ /_exception$/
+    containerID = "flashContainerNoDismiss" if name.to_s =~ /_exception$/
+
+    name = name.gsub("_exception", "")
+    if name == 'notice'
+      alert_class = 'alert-success'
+    elsif name == 'error'
+      alert_class = 'alert-danger'
+    else
+      alert_class = 'alert-warning'
+    end
+%>
+  <div id="<%=containerID%>" class="alert <%= alert_class %>" role="alert" <%= donotdismiss %>>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div id="flashMessage">
+      <%= msg %>
+    </div>
+  </div>
+<% end %>

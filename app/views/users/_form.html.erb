@@ -1,0 +1,29 @@
+<%= simple_form_for @user do |f| %>
+	<div class="col-md-6 col-offset-3">
+		
+		<div class="from-group">
+			<%= f.label :name %>
+			<%= f.input_field :name, label: false, class:'form-control' %>
+		</div>
+
+		<div class="from-group">
+			<%= f.label :email %>
+			<%= f.email_field :email, label: false, class:'form-control' %>
+		</div>
+
+		<div class="from-group">
+			<%= f.label :password %>	
+			<%= f.password_field :password, label: false, class:'form-control' %>
+		</div>
+
+		<div class="from-group">
+			<%= f.label :password_confirmation, "Confirmation" %>
+			<%= f.password_field :password_confirmation, label: false, class:'form-control' %>
+		</div>
+
+		<br>
+		<%= f.submit "Create User", class:'btn btn-primary' %>
+
+	</div>
+<% end %>
+
