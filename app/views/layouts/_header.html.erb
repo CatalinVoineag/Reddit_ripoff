@@ -15,8 +15,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-          <li><%= link_to 'Users', '#' %></li>
-          <li><%= link_to 'Profile Settings', '#' %></li>
+          <li><%= link_to 'Users', users_path %></li>
+          <li><%= link_to 'Profile', user_path(current_user) %></li>
+          <li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
           <li><%= link_to 'Log out', logout_path, method: :delete %><</li>
         <% else %>
           <li><%= link_to "Log in", login_path %></li>

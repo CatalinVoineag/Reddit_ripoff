@@ -1,2 +1,12 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>All users</h1>
+
+<ul>
+	<% @users.each do |user| %>
+		<li>
+			<%= link_to user.name, user %>
+			<% if current_user.admin? && !current_user?(user) %>
+				<%= link_to "Delete", user, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
+			<% end %>
+		</li>
+	<% end %>
+</ul>

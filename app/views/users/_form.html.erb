@@ -22,7 +22,7 @@
 		</div>
 
 		<br>
-		<%= f.submit "Create User", class:'btn btn-primary' %>
+		<%= f.submit params[:action] == "new" ? "Create User" : "Update User" , class:'btn btn-primary' %>
 
 	</div>
 <% end %>
