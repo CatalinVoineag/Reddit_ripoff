@@ -1,0 +1,19 @@
+<%= simple_form_for @link do |f| %>
+	<div class="col-md-6 col-offset-3">
+		
+		<div class="from-group">
+			<%= f.label :title %>
+			<%= f.input_field :title, label: false, class:'form-control' %>
+		</div>
+
+		<div class="from-group">
+			<%= f.label :link %>
+			<%= f.email_field :link, label: false, class:'form-control' %>
+		</div>
+
+		<br>
+		<%= f.submit params[:action] == "new" ? "Create Link" : "Update Link" , class:'btn btn-primary' %>
+
+	</div>
+<% end %>
+

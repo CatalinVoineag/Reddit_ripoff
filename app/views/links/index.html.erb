@@ -1,0 +1,11 @@
+<h1>All Links</h1>
+
+	<%= link_to "Create Link", new_link_path, class:'btn btn-success btn-lg' %>
+	<br><br><br><br>
+<ul>
+	<% @links.each do |link| %>
+		<li><%= link_to link.title, link.link %></li>
+		<li><%= link_to "Edit", edit_link_path(link), class:'btn btn-xs btn-primary' %></li>
+		<li><%= link_to "Delete", link_path(link), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-xs btn-danger' %></li>
+	<% end %>
+</ul>
