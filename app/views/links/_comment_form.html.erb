@@ -1,0 +1,7 @@
+<%= simple_form_for :comments, url: link_comment_path(@link) do |f| %>
+	
+	<%= f.text_area :text, size: '40x6' %>
+
+	<%= f.submit 'Submit', class: 'btn btn-primary' %>
+
+<% end %>

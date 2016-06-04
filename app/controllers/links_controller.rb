@@ -51,6 +51,33 @@ class LinksController < ApplicationController
     redirect_to links_path
   end
 
+  def up
+    link = Link.find(params[:link_id])
+    link.up_vote(current_user)
+    redirect_to links_path 
+    flash[:success] = "Up Vote"
+  end
+
+  def down
+    link = Link.find(params[:link_id])
+    link.down_vote(current_user)
+    redirect_to links_path 
+    flash[:success] = "Down Vote"
+  end
+
+  def comment
+    link = Link.find(params[:link_id])
+    comment = link.comments.new(user_id: current_user.id, link_id: link.id, text: params[:comments][:text])
+    if comment.valid?
+      comment.save
+      flash[:notice] = "Comment Created"
+      redirect_to link
+    else
+      flash[:error] = "Error"
+      redirect_to link
+    end
+  end
+
   private
 
   # Before Filters

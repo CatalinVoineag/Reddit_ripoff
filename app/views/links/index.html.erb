@@ -4,7 +4,11 @@
 	<br><br><br><br>
 <ul>
 	<% @links.each do |link| %>
-		<li><%= link_to link.title, link.link %></li>
+		<li><h3><%= link_to link.title, link %></h3></li>
+		<li><h3><%= link_to link.title, link.link %></h3></li>
+		<li><h3>Likes <%= likes(link) %></h3> <%= link_to 'Like', link_up_path(link), class: 'btn btn-default' unless current_user.up_voted? %> </li>
+		<li><h3>Dislikes <%= dislikes(link) %></h3> <%= link_to 'Dislike', link_down_path(link), class: 'btn btn-default' unless current_user.down_voted? %> </li>
+		<br>
 		<li><%= link_to "Edit", edit_link_path(link), class:'btn btn-xs btn-primary' %></li>
 		<li><%= link_to "Delete", link_path(link), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-xs btn-danger' %></li>
 	<% end %>

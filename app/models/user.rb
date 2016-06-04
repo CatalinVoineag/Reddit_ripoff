@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
 	
 	before_save { self.email = email.downcase }
 
+	has_many :votes
+	has_many :commentss
+
 	validates :name, presence: true, length: { in: 1..50 }
 	validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, uniqueness: { case_sensitive: false }
 	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
@@ -36,6 +39,32 @@ class User < ActiveRecord::Base
 	# Forgets a user
 	def forget
 		update_attribute(:remember_token, nil)
+	end
+
+	# Only one vote per link
+	def up_voted?
+		unless self.votes.blank?
+			self.votes.each do |vote|
+				if vote.user_id == self.id && vote.up_vote == true 
+					return true
+				else
+					return false
+				end
+			end
+		end
+	end
+
+	# Only one vote per link
+	def down_voted?
+		unless self.votes.blank? 
+			self.votes.each do |vote|
+				if vote.user_id == self.id && vote.up_vote == false
+					return true
+				else
+					return false
+				end
+			end
+		end
 	end
 
 end

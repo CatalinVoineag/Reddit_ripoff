@@ -1,2 +1,12 @@
-<h1>Links#show</h1>
-<p>Find me in app/views/links/show.html.erb</p>
+<h1><%= @link.title %></h1>
+<br>
+
+<h2>Comments</h2>
+<ul>
+<% @link.comments.each do |comment| %>
+	<li><h4>From <%= comment.user.name %> <br> <%= comment.text %></h4></li>	
+<% end %>
+</ul>
+<br>
+<br>
+<%= render 'comment_form' %>
